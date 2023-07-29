@@ -7,7 +7,7 @@
 
 ;; DECOMP BEGINS
 (define-extern runs-on-jak-spawn (function none))
-
+(defun-extern speed-detected-air object)
 (import "goal_src/jak1/import/deathcam-ag.gc")
 
 (defskelgroup *deathcam-sg* deathcam deathcam-lod0-jg deathcam-idle-ja
@@ -620,7 +620,9 @@
                 (not (and (= (-> self game mode) 'play) (>= 0.0 (-> self fact-info-target health))))
                 )
        (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) circle) (can-feet?))
-           (go target-attack-air #f)
+           ;;(go target-attack-air #f)\
+           (speed-detected-air)
+           
            )
        (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) square)
                 (< (vector-dot (-> self control dynam gravity-normal) (-> self control transv)) 26624.0)

@@ -42,6 +42,61 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;; Define Custom Functions to call in mods
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(defun play-rand-laugh ()
+
+ (let ((v1-15  (rand-vu-int-range 1 11)))
+      (cond
+        ((= v1-15 1)
+         (play-rand-sound "SND/1.mp3" 100)
+         )
+                 ((= v1-15 2)
+         (play-rand-sound "SND/2.mp3" 100)
+         )
+                 ((= v1-15 3)
+         (play-rand-sound "SND/3.mp3" 100)
+         )
+                 ((= v1-15 4)
+         (play-rand-sound "SND/4.mp3" 100)
+         )
+                 ((= v1-15 5)
+         (play-rand-sound "SND/5.mp3" 100)
+         )
+                 ((= v1-15 6)
+         (play-rand-sound "SND/6.mp3" 100)
+         )
+                 ((= v1-15 7)
+         (play-rand-sound "SND/7.mp3" 100)
+         )
+                 ((= v1-15 8)
+         (play-rand-sound "SND/8.mp3" 100)
+         )
+                 ((= v1-15 9)
+         (play-rand-sound "SND/9.mp3" 100)
+         )
+                 ((= v1-15 10)
+         (play-rand-sound "SND/10.mp3" 100)
+         )
+                 ((= v1-15 11)
+         (play-rand-sound "SND/11.mp3" 100)
+         )
+
+)
+)
+
+
+(none))
+
+(defun speed-detected ()
+(play-rand-laugh)
+(send-event *target* 'loading)
+*target*)
+
+(defun speed-detected-air ()
+(play-rand-laugh)
+(go-process *target* target-load-wait)
+*target*)
+
 ;; add your own unique custom functions here!
 
 ;; Macros can be used more-or-less just like functions

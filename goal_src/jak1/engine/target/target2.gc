@@ -10,7 +10,7 @@
 
 
 ;; DECOMP BEGINS
-
+(defun-extern speed-detected-air object)
 (defstate target-load-wait (target)
   :event (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
     (case event-type
@@ -1609,14 +1609,16 @@
           (go target-jump (-> *TARGET-bank* jump-height-min) (-> *TARGET-bank* jump-height-max) (the-as surface #f))
           )
       (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) circle) (can-feet?))
-          (go target-attack-air #f)
+          (speed-detected-air)
+        
           )
       (when (can-hands? #f)
         (if (and (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
-                 (>= (-> self fact-info-target eco-level) 1.0)
+                 ;;(>= (-> self fact-info-target eco-level) 1.0)
                  )
-            (go target-yellow-jump-blast)
-            (go target-running-attack)
+                 ;;maybe bug
+           (go target-yellow-blast)
+           (go target-yellow-blast)
             )
         )
       (compute-alignment! (-> self align))
@@ -1696,7 +1698,7 @@
       (go target-attack)
       )
     (if (can-hands? #t)
-        (go target-running-attack)
+        (speed-detected)
         )
     (none)
     )
@@ -1741,7 +1743,7 @@
       (go target-attack)
       )
     (if (can-hands? #t)
-        (go target-running-attack)
+        (speed-detected)
         )
     (none)
     )

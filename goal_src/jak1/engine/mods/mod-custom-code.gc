@@ -24,6 +24,11 @@
     (defun runs-every-frame ()
       ;;(increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
       
+      ;;TODO remove
+(set! (-> *setting-control* default music-volume) 0.0)
+
+
+      ;;(set! (-> obj music-volume)
       (if *show-input-display* 
         (input-display-on)
         (input-display-off)
